@@ -1,9 +1,7 @@
-# lux 
+# [lux](https://na.leagueoflegends.com/en/game-info/champions/lux/)
 
 ```
 lux is a hero in lol
-
-this  for [lux](https://na.leagueoflegends.com/en/game-info/champions/lux/)
 ```
 
 ## Project setup
