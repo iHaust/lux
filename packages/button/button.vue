@@ -1,11 +1,11 @@
 <template>
 	<button
-		class="pica-btn"
+		class="lux-btn"
 		@click="handleClick"
 		:disabled="buttonDisabled"
 		:class="[
-			type ? `pica-btn--${type}` : '',
-			buttonSize ? `el-button--${buttonSize}` : '',
+			type ? `lux-btn--${type}` : '',
+			buttonSize ? `lux-button--${buttonSize}` : '',
 			{
 				'is-disabled': buttonDisabled
 			}
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-	name: 'PicaButton',
+	name: 'LuxButton',
 	props: {
 		type: {
       type: String,

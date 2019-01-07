@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const baseWebpackConfig = require('./package.config');
 const config = require('./config');
@@ -18,22 +19,24 @@ module.exports = merge(baseWebpackConfig, {
   externals: {
     vue: config.vue
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      uglifyOptions: {
-        ie8: false,
-        output: {
-          comments: false,
-          beautify: false,
-        },
-        mangle: {
-          keep_fnames: true
-        },
-        compress: {
-          warnings: false,
-          drop_console: true
-        }
-      }
-    })
-  ]
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          ie8: false,
+          keep_fnames: true,
+
+          output: {
+            comments: false,
+            beautify: false
+          }, 
+          compress: {
+            warnings: false,
+            drop_console: true  
+          }
+        } 
+      })  
+    ]  
+  }
 });

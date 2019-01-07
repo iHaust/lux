@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = require('./config');
 
 module.exports = {
+	mode: 'production',
 	entry: {
 		app: ['./packages/index.js']
 	},
@@ -20,39 +22,75 @@ module.exports = {
   },
   externals: config.externals,
 	module: {
-		loaders: [
+		rules: [
 			{
-        test: /\.(jsx?|babel|es6)$/,
+        test: /\.js$/,
         include: process.cwd(),
-        loader: 'babel-loader'
+        use: [
+        	{
+        		loader: 'babel-loader'
+        	}
+        ]
       },
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader',
-				options: {
-					preserveWhitespace: false
-				}
+				use: [
+					{
+						loader: 'vue-loader',
+						options: {
+							preserveWhitespace: false
+						}
+					}
+				]
 			},
 			{
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader']
+        use: [
+        	{
+        		loader: 'style-loader'	
+        	},
+        	{
+        		loader: 'css-loader'	
+        	},
+        	{
+        		loader: 'postcss-loader'	
+        	}
+        ]
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        use: [
+        	{
+        		loader: 'style-loader'	
+        	},
+        	{
+        		loader: 'css-loader'	
+        	},
+        	{
+        		loader: 'sass-loader'	
+        	}
+        ]
       },
 			{
 				test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-				loader: 'url-loader',
-				query: {
-          limit: 10000,
-          name: path.posix.join('static', '[name].[hash:7].[ext]')
-        }
+				use: [
+					{
+						loader: 'url-loader',	
+						options: {
+		          limit: 10000,
+		          name: path.posix.join('static', '[name].[hash:7].[ext]')
+		        }
+					}
+				]
 			}
 		]
 	},
+	optimization: {
+		minimize: false
+	},	
 	plugins: [
 		new ProgressBarPlugin(),
+		new VueLoaderPlugin(),
 		// new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

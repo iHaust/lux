@@ -14,9 +14,9 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "clean": "rimraf lib",
-    "package:theme": "node config/handle-cssfile && gulp build --gulpfile build/gulpfile.js",
+    "package:theme": "node build/handle-cssfile && gulp build --gulpfile build/gulpfile.js",
     "package:common": "webpack --config build/package.common.js",
-    "package:prod": "webpack --config build/package.prod.config.js",
+    "package:prod": "webpack --config build/package.prod.js",
     "package:component": "webpack --config build/package.component.js",
     "dist": "npm run clean && npm run package:theme && npm run package:common && npm run package:prod && npm run package:component"
   },
@@ -40,6 +40,8 @@
     "vue": "^2.5.21"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
     "@vue/cli-plugin-babel": "^3.2.0",
     "@vue/cli-plugin-eslint": "^3.2.0",
     "@vue/cli-plugin-unit-mocha": "^3.2.0",
@@ -50,6 +52,7 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
     "chai": "^4.1.2",
     "css-loader": "^2.1.0",
@@ -65,21 +68,18 @@
     "progress-bar-webpack-plugin": "^1.11.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "url-loader": "^1.1.2",
     "vue": "^2.5.21",
     "vue-loader": "^15.5.0",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.21",
+    "webpack-cli": "^3.2.0",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   },
   "engines": {
     "node": ">= 8.9.0",
     "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  }
 }
