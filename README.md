@@ -1,4 +1,10 @@
-# lux
+# lux 
+
+```
+lux is a hero in lol
+
+this  for [lux](https://na.leagueoflegends.com/en/game-info/champions/lux/)
+```
 
 ## Project setup
 ```
@@ -8,11 +14,6 @@ yarn install
 ### Compiles and hot-reloads for development
 ```
 yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
 ```
 
 ### Run your tests
@@ -29,6 +30,3 @@ yarn run lint
 ```
 yarn run test:unit
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
