@@ -1,12 +1,40 @@
 {
   "name": "lux",
   "version": "0.1.0",
+  "description": "lux web ui.",
+  "author": "souse <chenfeng_lian@126.com>",
   "private": false,
+  "main": "lib/picaweb-ui.common.js",
+  "files": [
+    "lib",
+    "packages"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "clean": "rimraf lib",
+    "package:theme": "node config/handle-cssfile && gulp build --gulpfile build/gulpfile.js",
+    "package:common": "webpack --config build/package.common.js",
+    "package:prod": "webpack --config build/package.prod.config.js",
+    "package:component": "webpack --config build/package.component.js",
+    "dist": "npm run clean && npm run package:theme && npm run package:common && npm run package:prod && npm run package:component"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iHaust/lux.git"
+  },
+  "keywords": [
+    "luxweb",
+    "vue",
+    "components"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iHaust/lux/issues"
+  },
+  "unpkg": "lib/index.js",
+  "style": "lib/theme-style/index.css",
   "dependencies": {},
   "peerDependencies": {
     "vue": "^2.5.21"
@@ -34,6 +62,7 @@
     "gulp-sass": "^4.0.2",
     "node-sass": "^4.9.0",
     "postcss-loader": "^3.0.0",
+    "progress-bar-webpack-plugin": "^1.11.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
@@ -41,6 +70,16 @@
     "vue-loader": "^15.5.0",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.21",
+    "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
-  }
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
